@@ -6,6 +6,7 @@ Simple REST API written in TypeScript using the Node.js framework NestJS.
 It connects with a MongoDB database to perform CRUD actions with the data.
 
 # Contents
+
 - [To-Do List](#to-do-list)
   - [Description](#description)
 - [Contents](#contents)
@@ -20,6 +21,8 @@ It connects with a MongoDB database to perform CRUD actions with the data.
     - [Consulting To-Dos](#consulting-to-dos)
     - [Updating To-Dos](#updating-to-dos)
     - [Deleting To-Dos](#deleting-to-dos)
+      - [Delete all the to-Dos](#delete-all-the-to-dos)
+      - [Delete one To-Do by ID](#delete-one-to-do-by-id)
   - [Swagger Documentation](#swagger-documentation)
 
 ## Getting started
@@ -37,15 +40,17 @@ and follow the steps according to your operating system.
 
 Go to this link:
 
-- [Git Guides](https://github.com/git-guides/install-git) (Official documentation about
-  downloading **Git**)
+- [Git Guides](https://github.com/git-guides/install-git) (Officia
+  documentation about downloading **Git**)
 
 and follow the steps according to your operating system.
 
 ### 3. Cloning the project from [Github](https://github.com)
 
-Once you have **Docker Compose** and **Git** you need to open your favorite
-terminal and navigates into the directory where you want to clone project files.
+Once you have **Docker Compose** and **Git** you need to open your terminal and
+navigates into the directory where you want to clone project files.
+
+For example:
 
 ```console
 $ cd usr/documents/to-do-app
@@ -57,6 +62,8 @@ Then clone the repository.
 $ git clone https://github.com/EnmanuelFerrer/to-do-list.git
 ```
 
+This command is going to clone the project files in your directory.
+
 ### 4. Run the application
 
 To run the application you have to use **Docker Compose** command.
@@ -66,11 +73,11 @@ $ docker compose up
 ```
 
 This command is going to create the To-Do List application image and MongoDB
-database image then containerize it and run the containers.
+database image then containerize them and run.
 
 ### 5. Get a welcome message!
 
-Use your web browser and type this in the navigation bar:
+Use your web browser and type this in the navigation bar ant press ENTER:
 
 ```console
 http://localhost:3000
@@ -91,8 +98,8 @@ You can download tools like **Postman** to make it easier.
 - [Download Postman](https://www.postman.com/downloads/)
 
 Run **Postman** and go to the dropdown button
-at the left of the input text and click on it. You will see all the
-HTTP Verbs.
+at the left of the input text bar and click on it. You will see all the
+**HTTP methods** available.
 
 - GET
 - POST
@@ -102,46 +109,44 @@ HTTP Verbs.
 - HEAD
 - OPTIONS
 
-This application only uses the following:
+This application only uses the following methods:
 
 - GET
 - POST
 - PUT
 - DELETE
 
-With **Postman** you can send HTTP Requests as a client to a server
+With **Postman** you can send **HTTP Requests** as a client to your HTTP server
 and get responses.
 
-After this point, you have to use:
+After this point, you have to type:
 
 ```console
 localhost:3000/to-dos
 ```
 
-in the text input to refer to the To-Do List route
+in the input to interact with the To-Do List.
 
 ---
 
 ### Creating a new To-Do
 
-Use the **GET HTTP** method and type:
+Use the **GET** method and type:
 
 ```console
 localhost:3000/to-dos
 ```
 
-into the input text.
-
 Now click on the button **Body** under the input text.
 
-Then go down again and select **raw**, go all to the right click on the
-dropdown button, and select **JSON**. Under it, you have a space to write your
-JSON Body.
+Then go down and select **raw**, go to the right and click on the dropdown
+button, and select **JSON**. Under it, you have a space to write your JSON
+Body.
 
 This is an example:
 
 ```json
-// Creating a new To-Do
+// JSON body to create a new To-Do
 {
   "title": "Sleep",
   "description": "I have to sleep because I have a big headache",
@@ -150,8 +155,9 @@ This is an example:
 }
 ```
 
-Now you can hit the **Send** button to send your request and see the response
-that may look like this:
+Now you can hit the **Send** button to send your request and see the response.
+
+Response may look like this:
 
 ```json
 // Server response
@@ -174,12 +180,12 @@ that may look like this:
 There are two ways to do it.
 
 1. Get all the To-Dos
-2. Get one To-Do search by ID
+2. Get one To-Do searching by ID
 
-But first, create a second To-Do:
+First, create a second To-Do:
 
 ```json
-// Creating a new To-Do
+// JSON body to create a new To-Do
 {
   "title": "Eat",
   "description": "I have to eat because I'm hungry",
@@ -204,11 +210,11 @@ But first, create a second To-Do:
 
 Let's see the first consulting option.
 
-Select **GET method** this time and send that request, it is going to
-respond with a To-Do array (Your two objects):
+Select **GET method** and send the request, it is going to respond with an
+array of To-Dos.
 
 ```json
-// Server response. All the To-Dos
+// Server response. An array of To-Dos
 [
   {
     "_id": "65225bdd953b8493edf7cf6c",
@@ -234,13 +240,19 @@ respond with a To-Do array (Your two objects):
 ```
 
 The second option searches by ID, so just copy the ID of the To-Do that
-you just create and paste it after the application direction like this:
+you just create and paste it after the application URL.
+
+```console
+<application-url>/<to-do-id>
+```
+
+Should look's like this:
 
 ```console
 localhost:3000/to-dos/65225ed9953b8493edf7cf6f
 ```
 
-hit **Send** and the API will respond to you with your '**Eat**' To-Do
+hit **Send** and the API will respond to you with your 'Eat' To-Do
 object.
 
 ```json
@@ -257,14 +269,17 @@ object.
 }
 ```
 
-> **Note:** You can access these two endpoints using your browser.
+> **Note:** You can access these two endpoints using your web browser if you
+> have at least one To-Do created.
+>
+> Get all the To-Dos
 >
 > ```console
-> // Get all the To-Dos
 > http://localhost:3000/to-dos/
 > ```
+>
+> Get one To-Do by ID
 > ```console
-> // Get one To-D0
 > http://localhost:3000/to-dos/65225ed9953b8493edf7cf6f
 > ```
 
@@ -273,7 +288,8 @@ object.
 ### Updating To-Dos
 
 To update a To-Do object you just have to use the ID that you used previously
-and change the **HTTP method** to **PUT** and modify the JSON's Body.
+and, method the HTTP method to **PUT** and modify the JSON's Body with new
+information.
 
 ```json
 // JSON Body with new data to update To-Do
@@ -305,10 +321,17 @@ The server should respond with the updated To-DO.
 
 ### Deleting To-Dos
 
-There are two ways to delete To-Dos, like consulting
+There are two ways to delete To-Dos, like consulting.
 
-1. **Delete all the to-Dos:** To delete all the to-Dos, you have to select the **DELETE method** and send the request.
+1. Delete all the to-Dos
 2. Delete one To-Do by ID:
+
+#### Delete all the to-Dos
+
+To delete all the to-Dos, you have to select the
+**DELETE** method and send the request.
+
+#### Delete one To-Do by ID
 
 To delete one To-Do by the ID you have to **paste** the To-Do ID after the
 application's direction and hit **Send**.
@@ -317,9 +340,24 @@ application's direction and hit **Send**.
 localhost:3000/65225ed9953b8493edf7cf6f
 ```
 
+> **Note:** You can access these two endpoints using your web browser if you
+> have at least one To-Do created.
+>
+> Delete all the To-Dos
+>
+> ```console
+> http://localhost:3000/to-dos/
+> ```
+>
+> Delete one To-Do by ID
+> ```console
+> http://localhost:3000/to-dos/65225ed9953b8493edf7cf6f
+> ```
+
 ## Swagger Documentation
 
 To access the Swagger documentation just go to your browser and type this URL
+in the navigation bar.
 
 ```console
 http://localhost:3000/api
