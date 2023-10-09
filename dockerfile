@@ -10,8 +10,8 @@ RUN pnpm install
 
 COPY . .
 
-RUN npm run build
+RUN pnpm run build
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start:prod"]
+CMD ["pnpm", "run", "start:prod"]
