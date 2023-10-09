@@ -1,0 +1,77 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      # This values are ports.
+      # At the left: Host system port.
+      # At the rigth: Container port.
+      #
+      # Like this:
+      # - HOST_PORT:CONTAINER_PORT
+      #
+      # The container port is maped to host port,
+      # it makes posible the connection between
+      # host and the app
+      # 
+      # The port at the left have to match port
+      # exposed in the ./dockerfile, line 13
+      #
+      # Like this: 
+      # EXPOSE HOST_PORT
+      - 3000:3000
+    links:
+      # The app service is linked to mongo service.
+      #
+      # The database service have to match with 
+      # the name given here.
+      - mongo
+  
+  mongo:
+    # The container_name is the name that we are using
+    # as host in the conection string
+    # and if you change this value, you have to
+    # make it match with the host in the ./.env file
+    #
+    # Like this:
+    # DATABASE=mongodb://admin:password@CONTAINER_NAME:27017/database?authSource=admin
+    container_name: mongo
+    image: mongo
+    ports:
+      # Same as ports above, except that this ports
+      # are for a MongoDB database
+      #
+      # Like this:
+      # - HOST_PORT:CONTAINER_PORT
+      #
+      # If you change CONTAINER_PORT value here, you
+      # have to make it match in ./.env file 
+      #
+      # Like this:
+      # DATABASE=mongodb://admin:password@mongo:CONTAINER_PORT/database?authSource=admin
+      - 27017:27017
+    environment:
+      # This two environment variables are to
+      # setup the database user.
+      # 
+      # If you change this values you have to
+      # update the ./.env file with same values
+      #
+      # Like This:
+      # DATABASE=mongodb://MONGO_INITDB_ROOT_USERNAME:MONGO_INITDB_ROOT_PASSWORD@mongo:27017/database?authSource=admin
+      #
+      # MONGO_INITDB_ROOT_USERNAME setup database username
+      # MONGO_INITDB_ROOT_PASSWORD setup database password
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodata:/data/db
+    logging:
+      driver: none
+
+volumes:
+  mongodata:
