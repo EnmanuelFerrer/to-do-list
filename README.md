@@ -1,54 +1,55 @@
 # To-Do List
 
-## Description
-
-Simple REST API written in TypeScript using the Node.js framework NestJS.
-It connects with a MongoDB database to perform CRUD actions with the data.
-
-# Contents
+## Contents
 
 - [To-Do List](#to-do-list)
+  - [Contents](#contents)
   - [Description](#description)
-- [Contents](#contents)
   - [Getting started](#getting-started)
-    - [1. Getting Docker Compose](#1-getting-docker-compose)
+    - [1. Getting Docker](#1-getting-docker)
     - [2. Getting Git](#2-getting-git)
     - [3. Cloning the project from Github](#3-cloning-the-project-from-github)
     - [4. Run the application](#4-run-the-application)
     - [5. Get a welcome message!](#5-get-a-welcome-message)
   - [Using the app](#using-the-app)
-    - [Creating a new To-Do](#creating-a-new-to-do)
-    - [Consulting To-Dos](#consulting-to-dos)
-    - [Updating To-Dos](#updating-to-dos)
-    - [Deleting To-Dos](#deleting-to-dos)
+    - [1. Creating a new To-Do](#1-creating-a-new-to-do)
+    - [2. Consulting To-Dos](#2-consulting-to-dos)
+      - [Getting all the To-Dos](#getting-all-the-to-dos)
+      - [Getting one To-Do by ID](#getting-one-to-do-by-id)
+    - [3. Updating one To-Dos](#3-updating-one-to-dos)
+    - [4. Deleting To-Dos](#4-deleting-to-dos)
       - [Delete all the to-Dos](#delete-all-the-to-dos)
       - [Delete one To-Do by ID](#delete-one-to-do-by-id)
   - [Swagger Documentation](#swagger-documentation)
 
+## Description
+
+Simple REST API written in TypeScript using the Node.js framework NestJS.
+It connects with a MongoDB database to perform CRUD actions with the data.
+
 ## Getting started
 
-### 1. Getting Docker Compose
+### 1. Getting Docker
+---
 
 Go to this link:
-
-- [Docker Docs](https://www.docker.com/products/docker-desktop/)
-  (Official documentation about downloading **Docker Desktop**)
-
+[Docker Docs](https://www.docker.com/products/docker-desktop/)
+(**Docker Desktop** downloading documentation)
 and follow the steps according to your operating system.
 
-### 2. Getting Git
+### 2. Getting Git 
+---
 
 Go to this link:
-
-- [Git Guides](https://github.com/git-guides/install-git) (Officia
-  documentation about downloading **Git**)
-
+[Git Guides](https://github.com/git-guides/install-git)
+(**Git** downloading documentation)
 and follow the steps according to your operating system.
 
 ### 3. Cloning the project from [Github](https://github.com)
+---
 
-Once you have **Docker Compose** and **Git** you need to open your terminal and
-navigates into the directory where you want to clone project files.
+Once you have **Docker** and **Git** you need to open a terminal and
+navigates into the directory where you want to clone the project files.
 
 For example:
 
@@ -56,7 +57,8 @@ For example:
 $ cd usr/documents/to-do-app
 ```
 
-Then clone the repository.
+Then press ENTER to change the directory. Now clone the repository with this
+command.
 
 ```console
 $ git clone https://github.com/EnmanuelFerrer/to-do-list.git
@@ -65,6 +67,7 @@ $ git clone https://github.com/EnmanuelFerrer/to-do-list.git
 This command is going to clone the project files in your directory.
 
 ### 4. Run the application
+---
 
 To run the application you have to use **Docker Compose** command.
 
@@ -72,18 +75,20 @@ To run the application you have to use **Docker Compose** command.
 $ docker compose up
 ```
 
-This command is going to create the To-Do List application image and MongoDB
-database image then containerize them and run.
+This command is going to build the docker container and run it.
 
 ### 5. Get a welcome message!
+---
 
-Use your web browser and type this in the navigation bar ant press ENTER:
+Use your web browser and type this:
 
 ```console
 http://localhost:3000
 ```
 
-You are going to get a message like this
+in the navigation bar and press ENTER.
+
+If you get this message, the application is ready to use.
 
 ```console
 Welcome to your To-Do List
@@ -91,33 +96,22 @@ Welcome to your To-Do List
 
 ## Using the app
 
-To interact with the API you need to use a REST client.
+To interact with the REST API you need to use a REST client.
 
-You can download tools like **Postman** to make it easier.
+You can download tools like **Postman** to do it.
 
-- [Download Postman](https://www.postman.com/downloads/)
-
-Run **Postman** and go to the dropdown button
-at the left of the input text bar and click on it. You will see all the
-**HTTP methods** available.
-
-- GET
-- POST
-- PUT
-- PATCH
-- DELETE
-- HEAD
-- OPTIONS
-
-This application only uses the following methods:
-
-- GET
-- POST
-- PUT
-- DELETE
-
-With **Postman** you can send **HTTP Requests** as a client to your HTTP server
+With **Postman** you can send **HTTP Requests** as a client to your **HTTP server**
 and get responses.
+
+[Download Postman](https://www.postman.com/downloads/)
+
+Start **Postman** and go to the dropdown button at the left of the input text
+bar and click on it. You will see all the **HTTP methods** available. This application only use the following:
+
+- GET
+- POST
+- PUT
+- DELETE
 
 After this point, you have to type:
 
@@ -125,11 +119,10 @@ After this point, you have to type:
 localhost:3000/to-dos
 ```
 
-in the input to interact with the To-Do List.
+in the input to interact with the To-Do List application.
 
+### 1. Creating a new To-Do
 ---
-
-### Creating a new To-Do
 
 Use the **GET** method and type:
 
@@ -139,9 +132,9 @@ localhost:3000/to-dos
 
 Now click on the button **Body** under the input text.
 
-Then go down and select **raw**, go to the right and click on the dropdown
-button, and select **JSON**. Under it, you have a space to write your JSON
-Body.
+Then go down, select **RAW** and go to the right, click on the dropdown
+button and select **JSON**. Under all of this, you have a text box to write
+your JSON Body.
 
 This is an example:
 
@@ -157,8 +150,6 @@ This is an example:
 
 Now you can hit the **Send** button to send your request and see the response.
 
-Response may look like this:
-
 ```json
 // Server response
 {
@@ -173,9 +164,9 @@ Response may look like this:
 }
 ```
 
----
 
-### Consulting To-Dos
+### 2. Consulting To-Dos
+---
 
 There are two ways to do it.
 
@@ -208,6 +199,9 @@ First, create a second To-Do:
 }
 ```
 
+#### Getting all the To-Dos
+---
+
 Let's see the first consulting option.
 
 Select **GET method** and send the request, it is going to respond with an
@@ -238,6 +232,9 @@ array of To-Dos.
   }
 ]
 ```
+
+#### Getting one To-Do by ID
+---
 
 The second option searches by ID, so just copy the ID of the To-Do that
 you just create and paste it after the application URL.
@@ -279,14 +276,13 @@ object.
 > ```
 >
 > Get one To-Do by ID
+>
 > ```console
 > http://localhost:3000/to-dos/65225ed9953b8493edf7cf6f
 > ```
 
+### 3. Updating one To-Dos
 ---
-
-### Updating To-Dos
-
 To update a To-Do object you just have to use the ID that you used previously
 and, method the HTTP method to **PUT** and modify the JSON's Body with new
 information.
@@ -317,9 +313,8 @@ The server should respond with the updated To-DO.
 }
 ```
 
+### 4. Deleting To-Dos
 ---
-
-### Deleting To-Dos
 
 There are two ways to delete To-Dos, like consulting.
 
@@ -350,6 +345,7 @@ localhost:3000/65225ed9953b8493edf7cf6f
 > ```
 >
 > Delete one To-Do by ID
+>
 > ```console
 > http://localhost:3000/to-dos/65225ed9953b8493edf7cf6f
 > ```
